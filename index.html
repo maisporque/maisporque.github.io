@@ -215,7 +215,8 @@ details p{color:var(--soft);margin-top:10px;max-width:60ch}
 .end form.cap{border-color:transparent}
 .end .note{color:#D6DBFF}
 .end .note b{color:#fff}
-.ok{max-width:520px;background:var(--white);color:var(--ink);border:1.5px solid var(--c3);border-radius:16px;padding:16px 18px;font-weight:500}
+.ok{max-width:520px;background:var(--white);color:var(--ink);border:1.5px solid var(--c3);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.ok b{font-weight:600;font-size:18px}.ok span{color:var(--soft);font-size:15px;margin-bottom:8px}.ok .btn{align-self:flex-start}
 footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 @media (max-width:900px){
@@ -410,10 +411,8 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
 document.querySelectorAll('form.cap').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';
-    fetch(f.action,{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
-      if(d&&d.success===false)throw 0;
-      f.outerHTML='<p class="ok">Pronto! Enviamos um e-mail para você confirmar o cadastro. Depois de confirmar, o roteiro chega na hora. Olhe também a caixa de spam e promoções.</p>';
-    }).catch(function(){f.submit()});
+    var done=function(){f.outerHTML='<div class="ok"><b>Pronto! Seu roteiro está liberado.</b><span>Baixe agora e salve no celular ou no computador.</span><a class="btn" href="roteiro-gratis.pdf" download>Baixar o roteiro (PDF)</a></div>';};
+    fetch(f.action,{method:'POST',body:new FormData(f),mode:'no-cors'}).then(done,done);
   });
 });
 </script>
