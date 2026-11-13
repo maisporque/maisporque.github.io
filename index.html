@@ -76,13 +76,13 @@ form.cap:focus-within{border-color:var(--cobalt)}
 
 
 /* apresentação */
-.deck{position:relative;background:var(--white);border:1.5px solid var(--line);border-radius:28px;padding:26px 28px 20px;min-height:520px;display:flex;flex-direction:column;box-shadow:0 30px 60px -30px #171a3a33}
+.deck{position:relative;background:var(--white);border:1.5px solid var(--line);border-radius:28px;padding:26px 28px 20px;display:flex;flex-direction:column;box-shadow:0 30px 60px -30px #171a3a33}
 .prog{display:flex;gap:6px;margin-bottom:26px}
 .prog i{flex:1;height:4px;border-radius:2px;background:var(--line);position:relative;overflow:hidden}
 .prog i:after{content:"";position:absolute;inset:0;background:var(--cobalt);transform-origin:left;transform:scaleX(var(--p,0))}
-.slides{position:relative;flex:1}
-.sl{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease}
-.sl.on{opacity:1;visibility:visible;position:relative}
+.slides{position:relative;flex:1;display:grid}
+.sl{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .45s ease}
+.sl.on{opacity:1;visibility:visible}
 .sl h3{font-size:34px;letter-spacing:-.025em;margin-bottom:10px}
 .sl p{color:var(--soft);font-size:16.5px;max-width:34ch;margin-bottom:26px}
 .nav{display:flex;align-items:center;justify-content:space-between;margin-top:18px;font-size:14px;color:var(--soft)}
@@ -116,6 +116,35 @@ form.cap:focus-within{border-color:var(--cobalt)}
 .phones div{text-align:center;font-size:13.5px;font-weight:600}
 .phones i{display:block;aspect-ratio:9/16;border-radius:16px;border:5px solid var(--ink);background:linear-gradient(170deg,#2b3878 0%,#151c42 70%);margin-bottom:10px;position:relative}
 .phones i:after{content:"";position:absolute;left:14%;right:14%;bottom:16%;height:9px;border-radius:3px;background:#fff;opacity:.85}
+.why{display:grid;gap:0}
+.why div{display:grid;grid-template-columns:1fr;padding:16px 0;border-top:1.5px solid var(--line)}
+.why b{font-family:"Bricolage";font-weight:700;font-size:20px;letter-spacing:-.015em}
+.why span{color:var(--soft);font-size:15.5px;margin-top:4px}
+.ret{margin:0}
+.ret svg{width:100%;height:190px;display:block}
+.ret figcaption{display:grid;gap:8px;margin-top:16px;font-size:14.5px;font-weight:600}
+.ret figcaption span{display:flex;align-items:center;gap:10px}
+.ret figcaption span:before{content:"";width:22px;height:4px;border-radius:2px}
+.ret .k1:before{background:var(--cobalt)}.ret .k2:before{background:var(--c4)}
+.brand{display:grid;gap:12px}
+.brand div{display:grid;grid-template-columns:140px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:18px;padding:14px 16px;border:1.5px solid var(--line);border-radius:16px}
+.brand div>span{grid-row:1/3}
+.brand b{font-weight:600;font-size:16px}
+.brand small{color:var(--soft);font-size:14px}
+.mascot{width:54px;height:54px;border-radius:50%;background:#7CC6FF;display:flex;align-items:center;justify-content:center;gap:7px}
+.mascot i{width:13px;height:16px;border-radius:50%;background:#fff;box-shadow:inset -3px -2px 0 3px var(--ink)}
+.tag{font-family:"Bricolage";font-weight:800;font-size:16px;color:var(--c2);background:var(--ink);padding:8px 10px;border-radius:9px;justify-self:start;white-space:nowrap;letter-spacing:-.01em}
+.sw{display:flex;gap:5px}.sw i{width:22px;height:40px;border-radius:5px}
+.sw i:nth-child(1){background:var(--ink)}.sw i:nth-child(2){background:var(--c2)}.sw i:nth-child(3){background:var(--c4)}.sw i:nth-child(4){background:#7CC6FF}
+.weeks{display:grid;gap:10px}
+.weeks div{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--paper);border-radius:14px}
+.weeks small{width:84px;font-size:14px;font-weight:600;color:var(--ink)}
+.weeks i{width:34px;height:34px;border-radius:9px;border:1.5px dashed #BFC3D2}
+.weeks i.on{border:0;background:var(--c3)}
+.start{display:flex;flex-direction:column;gap:6px;padding:24px;border-radius:18px;background:var(--ink);color:#fff}
+.start b{font-family:"Bricolage";font-weight:700;font-size:22px;letter-spacing:-.015em}
+.start span{color:#B7BBD6;font-size:15.5px;margin-bottom:14px}
+.start .btn{align-self:flex-start}
 @media (prefers-reduced-motion:reduce){.sl{transition:none}}
 
 /* prova */
@@ -192,7 +221,7 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
   .w{padding:0 20px}
   .hero{grid-template-columns:minmax(0,1fr);gap:44px;padding-bottom:60px}
   .hero>*{min-width:0}
-  .deck{min-height:500px;padding:22px 20px 16px}.sl h3{font-size:28px}
+  .deck{padding:22px 20px 16px}.brand div{grid-template-columns:104px 1fr;column-gap:12px}.tag{font-size:12.5px;padding:7px 8px}.sw i{width:17px}.sl h3{font-size:28px}
   .proof-head{flex-direction:column;align-items:start}
   .reel{grid-template-columns:repeat(4,72%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
   .reel figure{scroll-snap-align:start}
@@ -230,49 +259,54 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
     <p class="note"><b>O Roteiro que Viraliza:</b> modelo pronto de Short e 5 prompts, em PDF. Chega na hora; você sai da lista quando quiser.</p>
   </div>
 
-  <div class="deck" id="deck" aria-roledescription="apresentação" aria-label="O que é um canal dark de curiosidade">
+  <div class="deck" id="deck" aria-roledescription="apresentação" aria-label="Por que o nicho de curiosidade funciona">
     <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="slides">
       <section class="sl on" aria-label="1 de 5">
-        <h3>Um canal sem rosto</h3>
-        <p>Narração, animação e legenda fazem o trabalho do apresentador. Ninguém precisa aparecer.</p>
-        <div class="layers">
-          <div><b>Narração</b><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-          <div><b>Animação</b><span class="frames"><i></i><i></i><i></i><i></i></span></div>
-          <div><b>Legenda</b><span class="cap">POR QUE O MAR É <em>SALGADO</em>?</span></div>
+        <h3>Por que esse nicho funciona</h3>
+        <p>Vídeo curto de curiosidade prende quem assiste e não depende de ninguém aparecer.</p>
+        <div class="why">
+          <div><b>Assunto que não acaba</b><span>Toda coisa do dia a dia esconde uma pergunta. Ideia nunca falta.</span></div>
+          <div><b>Público de todas as idades</b><span>Criança, adulto e avô querem saber por que o céu é azul.</span></div>
+          <div><b>Ninguém precisa aparecer</b><span>O personagem e a narração viram o rosto do canal.</span></div>
         </div>
       </section>
       <section class="sl" aria-label="2 de 5">
-        <h3>Curiosidade não acaba</h3>
-        <p>Uma pergunta por vídeo. Cada tema rende centenas de perguntas.</p>
-        <div class="chips"><span>Corpo humano</span><span>Animais</span><span>Espaço</span><span>Comida</span><span>Oceanos</span><span>História</span><span>Clima</span><span>Tecnologia</span><span>Objetos do dia a dia</span><span>Sobrevivência</span></div>
-        <div class="q">"Por que o gato sempre cai de pé?"</div>
+        <h3>Os 3 primeiros segundos</h3>
+        <p>É ali que a pessoa decide se fica ou arrasta. Um bom começo segura o vídeo inteiro.</p>
+        <figure class="ret" aria-label="Gráfico ilustrativo: com gancho forte, mais gente assiste até o fim">
+          <svg viewBox="0 0 400 170" preserveAspectRatio="none">
+            <line x1="0" y1="168" x2="400" y2="168" stroke="#DFE2EA" stroke-width="2"/>
+            <rect x="0" y="0" width="34" height="168" fill="#3346FF14"/>
+            <path d="M0 10 C 20 12, 30 30, 60 40 S 200 52, 400 64" fill="none" stroke="#3346FF" stroke-width="4" stroke-linecap="round"/>
+            <path d="M0 10 C 14 70, 26 110, 60 122 S 200 140, 400 150" fill="none" stroke="#FF5A4E" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8"/>
+          </svg>
+          <figcaption><span class="k1">Gancho forte: a pessoa fica</span><span class="k2">Gancho fraco: a pessoa arrasta</span></figcaption>
+        </figure>
       </section>
       <section class="sl" aria-label="3 de 5">
-        <h3>Todo vídeo em 5 partes</h3>
-        <p>A estrutura que segura a atenção do primeiro ao último segundo.</p>
-        <div class="parts">
-          <div style="--k:var(--c1);--w:12%"><span>Gancho</span><small>0–3 s</small></div>
-          <div style="--k:var(--c2);--w:8%"><span>Bordão</span><small>3–5 s</small></div>
-          <div style="--k:var(--c3);--w:100%"><span>Explicação</span><small>5–30 s</small></div>
-          <div style="--k:var(--c4);--w:60%"><span>Virada e fato</span><small>30–45 s</small></div>
-          <div style="--k:var(--ink);--w:40%"><span>Chamada</span><small>45–55 s</small></div>
+        <h3>Seja reconhecido na hora</h3>
+        <p>Os canais que crescem repetem os mesmos elementos em todo vídeo.</p>
+        <div class="brand">
+          <div><span class="mascot"><i></i><i></i></span><b>Um personagem</b><small>simples, sempre o mesmo</small></div>
+          <div><span class="tag">MAS POR QUÊ?</span><b>Um bordão</b><small>a mesma frase, no mesmo lugar</small></div>
+          <div><span class="sw"><i></i><i></i><i></i><i></i></span><b>As mesmas cores</b><small>o público reconhece antes de ler</small></div>
         </div>
       </section>
       <section class="sl" aria-label="4 de 5">
-        <h3>Ferramentas gratuitas</h3>
-        <p>O processo inteiro cabe em ferramentas com versão grátis.</p>
-        <ol class="tools">
-          <li><span>Roteiro</span><b>IA de conversa</b></li>
-          <li><span>Narração</span><b>CapCut</b></li>
-          <li><span>Cenas</span><b>Canva</b></li>
-          <li><span>Montagem e legenda</span><b>CapCut</b></li>
-        </ol>
+        <h3>Constância vence sorte</h3>
+        <p>Um vídeo viral pode ser sorte. Três vídeos por semana, todo mês, é método.</p>
+        <div class="weeks">
+          <div><small>Semana 1</small><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div><small>Semana 2</small><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div><small>Semana 3</small><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div><small>Semana 4</small><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
       </section>
       <section class="sl" aria-label="5 de 5">
-        <h3>Um vídeo, três redes</h3>
-        <p>O mesmo arquivo vertical vai para os três lugares onde mais se assiste vídeo curto.</p>
-        <div class="phones"><div><i></i><span>YouTube Shorts</span></div><div><i></i><span>Instagram Reels</span></div><div><i></i><span>TikTok</span></div></div>
+        <h3>Começa do zero, sem gastar</h3>
+        <p>Roteiro com ajuda da IA, voz e edição em ferramentas gratuitas. Não precisa saber desenhar, editar nem ter equipamento.</p>
+        <div class="start"><b>O passo a passo completo está no Kit.</b><span>Cada etapa explicada, com os prompts e os roteiros prontos.</span><a class="btn" href="#kit">Ver o que vem no Kit</a></div>
       </section>
     </div>
     <div class="nav"><button type="button" id="prev" aria-label="Slide anterior">‹</button><span id="count">1 / 5</span><button type="button" id="next" aria-label="Próximo slide">›</button></div>
