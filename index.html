@@ -215,6 +215,7 @@ details p{color:var(--soft);margin-top:10px;max-width:60ch}
 .end form.cap{border-color:transparent}
 .end .note{color:#D6DBFF}
 .end .note b{color:#fff}
+.ok{max-width:520px;background:var(--white);color:var(--ink);border:1.5px solid var(--c3);border-radius:16px;padding:16px 18px;font-weight:500}
 footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 @media (max-width:900px){
@@ -252,8 +253,8 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
   <div>
     <h1>Vídeos que prendem do primeiro segundo. Sem mostrar o rosto.</h1>
     <p class="lead">Roteiro com IA, narração gratuita e animação simples: um método para criar Shorts de curiosidade sem aparecer, ensinado do zero.</p>
-    <form class="cap" id="roteiro-gratis" action="#MAILERLITE_FORM_URL" method="post">
-      <input type="email" name="fields[email]" placeholder="Seu e-mail" required aria-label="Seu e-mail">
+    <form class="cap" id="roteiro-gratis" action="https://assets.mailerlite.com/jsonp/2792428/forms/204017222709938103/subscribe" method="post">
+      <input type="hidden" name="ml-submit" value="1"><input type="hidden" name="anticsrf" value="true"><input type="email" name="fields[email]" placeholder="Seu e-mail" required aria-label="Seu e-mail">
       <button class="btn" type="submit">Receber o roteiro grátis</button>
     </form>
     <p class="note"><b>O Roteiro que Viraliza:</b> modelo pronto de Short e 5 prompts, em PDF. Chega na hora; você sai da lista quando quiser.</p>
@@ -379,8 +380,8 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
 <section class="end" aria-label="Receber o roteiro grátis">
   <h2>Escreva seu primeiro roteiro hoje.</h2>
   <div>
-    <form class="cap" action="#MAILERLITE_FORM_URL" method="post">
-      <input type="email" name="fields[email]" placeholder="Seu e-mail" required aria-label="Seu e-mail">
+    <form class="cap" action="https://assets.mailerlite.com/jsonp/2792428/forms/204017222709938103/subscribe" method="post">
+      <input type="hidden" name="ml-submit" value="1"><input type="hidden" name="anticsrf" value="true"><input type="email" name="fields[email]" placeholder="Seu e-mail" required aria-label="Seu e-mail">
       <button class="btn" type="submit" style="background:var(--ink)">Receber o roteiro grátis</button>
     </form>
     <p class="note"><b>Grátis.</b> Modelo pronto, 5 prompts e checklist, em PDF.</p>
@@ -404,6 +405,17 @@ footer{padding:0 0 50px;color:var(--soft);font-size:14px;display:flex;justify-co
   d.addEventListener('focusin',()=>paused=true);d.addEventListener('focusout',()=>paused=false);
   show(0);requestAnimationFrame(loop);
 })();
+</script>
+<script>
+document.querySelectorAll('form.cap').forEach(function(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';
+    fetch(f.action,{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
+      if(d&&d.success===false)throw 0;
+      f.outerHTML='<p class="ok">Pronto! Enviamos um e-mail para você confirmar o cadastro. Depois de confirmar, o roteiro chega na hora. Olhe também a caixa de spam e promoções.</p>';
+    }).catch(function(){f.submit()});
+  });
+});
 </script>
 </body>
 </html>
